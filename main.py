@@ -13,11 +13,27 @@ class Solution:
                 if i >= len(strs[j]) or strs[0][i] != strs[j][i]:
                     return prefix
             prefix += strs[0][i]
-
-
-
         return prefix
+
+    def isValid(self, s: str) -> bool:
+        l = []
+        for i in range(len(s)):
+            if s[i] in "({[":
+                l.append(s[i])
+            elif len(l) == 0:
+                return False
+            elif s[i] == ")" and l[-1] != "(":
+                return False
+            elif s[i] == "]" and l[-1] != "[":
+                return False
+            elif s[i] == "}" and l[-1] != "{":
+                return False
+            else:
+                l.pop()
+        if len(l) != 0:
+            return False
+        return True
 
 
 s = Solution()
-print(s.longestCommonPrefix(["flower","flow","flight"]))
+print(s.isValid("({}"))
