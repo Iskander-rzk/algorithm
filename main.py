@@ -1,8 +1,23 @@
-from Linked_list import LinkedList
-from palindrome_and_roman_integer import Solution
+
+
+
+class Solution:
+    def longestCommonPrefix(self, strs: list[str]) -> str:
+        if not strs:
+            return ""
+        strs.sort()
+        prefix = ""
+        n = len(strs)
+        for i in range(len(strs[0])):
+            for j in range(1, n):
+                if i >= len(strs[j]) or strs[0][i] != strs[j][i]:
+                    return prefix
+            prefix += strs[0][i]
+
+
+
+        return prefix
+
 
 s = Solution()
-print(s.isPalindrome(121))
-print(s.romanToInt("MCMXCIV"))
-
-
+print(s.longestCommonPrefix(["flower","flow","flight"]))
